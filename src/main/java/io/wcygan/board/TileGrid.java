@@ -4,7 +4,7 @@ import javafx.scene.layout.GridPane;
 
 public class TileGrid extends GridPane {
 
-    private final Tile[][] board = new Tile[Constants.TILES_PER_SIDE][Constants.TILES_PER_SIDE];
+    public final Tile[][] board = new Tile[Constants.TILES_PER_SIDE][Constants.TILES_PER_SIDE];
 
     public TileGrid() {
         for (int i = 0; i < Constants.TILES_PER_SIDE; i++) {

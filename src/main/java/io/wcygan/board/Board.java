@@ -1,9 +1,12 @@
 package io.wcygan.board;
 
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.BorderPane;
 
-public class Board extends StackPane {
+public class Board extends BorderPane {
     public Board() {
-        getChildren().addAll(new TileGrid(), new CustomizationPanel());
+        TileGrid grid = new TileGrid();
+        CustomizationPanel panel = new CustomizationPanel(grid);
+        this.setCenter(grid);
+        this.setBottom(panel);
     }
 }
