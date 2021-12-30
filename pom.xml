@@ -30,7 +30,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>${javafx.maven.plugin.version}</version>
                 <configuration>
-                    <mainClass>LifeApplication</mainClass>
+                    <mainClass>io.wcygan.application.Life</mainClass>
                 </configuration>
             </plugin>
         </plugins>
