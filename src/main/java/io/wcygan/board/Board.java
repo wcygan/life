@@ -4,6 +4,6 @@ import javafx.scene.layout.StackPane;
 
 public class Board extends StackPane {
     public Board() {
-        getChildren().addAll(new Tile(0, 0));
+        getChildren().addAll(new TileGrid(), new CustomizationPanel());
     }
 }

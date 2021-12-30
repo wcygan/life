@@ -16,6 +16,7 @@ public class Life extends Application {
     public void start(Stage stage) {
         Scene scene = new Scene(new Board(), Constants.BOARD_SIDE_LENGTH, Constants.BOARD_SIDE_LENGTH + Constants.CUSTOMIZATION_PANEL_LENGTH);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

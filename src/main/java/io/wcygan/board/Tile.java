@@ -7,14 +7,19 @@ import javafx.scene.shape.Rectangle;
 
 public class Tile extends StackPane {
     private final int x, y;
+    private final Rectangle border;
 
     public Tile(int x, int y) {
         this.x = x;
         this.y = y;
-        Rectangle border = new Rectangle(Constants.TILE_SIZE, Constants.TILE_SIZE);
-        border.setFill(null);
-        border.setStroke(Color.BLACK);
+        this.border = new Rectangle(Constants.TILE_LENGTH, Constants.TILE_LENGTH);
+        this.border.setFill(null);
+        setBorderColor(Color.BLACK);
         setAlignment(Pos.CENTER);
         getChildren().addAll(border);
+    }
+
+    public void setBorderColor(Color color) {
+        this.border.setStroke(color);
     }
 }
