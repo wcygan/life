@@ -20,8 +20,8 @@ public class Life extends Application {
             Platform.exit();
             System.exit(0);
         });
-        
-        Scene scene = new Scene(new Board(), Constants.BOARD_SIDE_LENGTH, Constants.BOARD_SIDE_LENGTH + Constants.CUSTOMIZATION_PANEL_LENGTH);
+
+        Scene scene = new Scene(new Board(), Constants.BOARD_SIDE_LENGTH * 2, Constants.BOARD_SIDE_LENGTH + Constants.CUSTOMIZATION_PANEL_LENGTH);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

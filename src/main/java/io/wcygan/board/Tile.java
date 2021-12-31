@@ -64,7 +64,7 @@ public class Tile extends StackPane {
                 int yCheck = y + yIncrement;
 
                 if (xCheck >= board.length || xCheck < 0) continue;
-                if (yCheck >= board.length || yCheck < 0) continue;
+                if (yCheck >= board[0].length || yCheck < 0) continue;
 
                 if (board[xCheck][yCheck].alive) {
                     aliveNeighbors += 1;

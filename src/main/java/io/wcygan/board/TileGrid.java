@@ -4,16 +4,16 @@ import javafx.scene.layout.GridPane;
 
 public class TileGrid extends GridPane {
 
-    public final Tile[][] board = new Tile[Constants.TILES_PER_SIDE][Constants.TILES_PER_SIDE];
+    public final Tile[][] board = new Tile[Constants.TILES_PER_SIDE * 2][Constants.TILES_PER_SIDE];
 
     public TileGrid() {
-        for (int i = 0; i < Constants.TILES_PER_SIDE; i++) {
-            for (int j = 0; j < Constants.TILES_PER_SIDE; j++) {
-                Tile tile = new Tile(j, i);
-                tile.setTranslateX(j * Constants.TILE_LENGTH);
-                tile.setTranslateY(i * Constants.TILE_LENGTH);
+        for (int row = 0; row < Constants.TILES_PER_SIDE; row++) {
+            for (int col = 0; col < Constants.TILES_PER_SIDE * 2; col++) {
+                Tile tile = new Tile(col, row);
+                tile.setTranslateX(col * Constants.TILE_LENGTH);
+                tile.setTranslateY(row * Constants.TILE_LENGTH);
                 getChildren().add(tile);
-                board[j][i] = tile;
+                board[col][row] = tile;
             }
         }
     }
