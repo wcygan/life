@@ -26,24 +26,15 @@ public class Tile extends StackPane {
         setBehaviors();
     }
 
-
     public void checkNeighbors(Tile[][] board) {
         int aliveNeighbors = numNeighborsAlive(board);
 
         if (alive) {
             if (aliveNeighbors < 2) {
                 aliveNextIteration = false;
-            } else if (aliveNeighbors > 3) {
-                aliveNextIteration = false;
-            } else {
-                aliveNextIteration = true;
-            }
+            } else aliveNextIteration = aliveNeighbors <= 3;
         } else {
-            if (aliveNeighbors == 3) {
-                aliveNextIteration = true;
-            } else {
-                aliveNextIteration = false;
-            }
+            aliveNextIteration = aliveNeighbors == 3;
         }
     }
 
@@ -74,7 +65,7 @@ public class Tile extends StackPane {
 
     public void tryToRevive() {
         alive = aliveNextIteration;
-        adjustBackground(aliveNextIteration ? ALIVE_COLOR : DEAD_COLOR);
+        adjustBackground(alive ? ALIVE_COLOR : DEAD_COLOR);
     }
 
     private void setBehaviors() {
@@ -94,8 +85,7 @@ public class Tile extends StackPane {
 
     private void userClicked() {
         alive = !alive;
-        Background background = (alive) ? ALIVE_COLOR : DEAD_COLOR;
-        adjustBackground(background);
+        adjustBackground(alive ? ALIVE_COLOR : DEAD_COLOR);
     }
 
 }
