@@ -55,10 +55,6 @@ public class CustomizationPanel extends HBox {
         });
 
         clear.setOnMouseClicked(e -> {
-            paused.set(true);
-            start.setDisable(false);
-            stop.setDisable(true);
-
             for (Tile[] row : tileGrid.board) {
                 for (Tile tile : row) {
                     tile.reset();
