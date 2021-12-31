@@ -9,23 +9,19 @@ public class PhaseController extends Thread {
 
     public PhaseController(final Tile[][] board) {
         this.board = board;
-
     }
 
     @Override
     public void run() {
         for (int iter = 0; iter < Constants.MAXIMUM_ITERATIONS; iter++) {
-            try {
-                iterate();
-                sleep(Constants.MILLISECONDS_TO_SLEEP);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            iterate();
         }
-
         System.exit(0);
     }
 
+    /**
+     * Run one simulation of Life
+     */
     private void iterate() {
         for (Tile[] row : board) {
             for (Tile t : row) {
@@ -37,6 +33,12 @@ public class PhaseController extends Thread {
             for (Tile t : row) {
                 t.tryToRevive();
             }
+        }
+
+        try {
+            sleep(Constants.MILLISECONDS_TO_SLEEP);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
