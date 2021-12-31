@@ -3,20 +3,24 @@ package io.wcygan.lifecycle;
 import io.wcygan.board.Constants;
 import io.wcygan.board.Tile;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class PhaseController extends Thread {
 
     public final Tile[][] board;
+    AtomicBoolean paused;
 
-    public PhaseController(final Tile[][] board) {
+    public PhaseController(final Tile[][] board, AtomicBoolean paused) {
+        this.paused = paused;
         this.board = board;
     }
 
     @Override
     public void run() {
-        for (int iter = 0; iter < Constants.MAXIMUM_ITERATIONS; iter++) {
+        while (true) {
+            pauseIfNecessary();
             iterate();
         }
-        System.exit(0);
     }
 
     /**
@@ -39,6 +43,18 @@ public class PhaseController extends Thread {
             sleep(Constants.MILLISECONDS_TO_SLEEP);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void pauseIfNecessary() {
+        if (paused.get()) {
+            while (paused.get()) {
+                try {
+                    sleep(Constants.MILLISECONDS_TO_SLEEP);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

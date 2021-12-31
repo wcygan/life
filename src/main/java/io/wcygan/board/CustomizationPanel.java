@@ -5,10 +5,15 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class CustomizationPanel extends HBox {
 
     private final TileGrid tileGrid;
     private final Button start = new Button("Start");
+    private final Button stop = new Button("Stop");
+    AtomicBoolean paused = new AtomicBoolean(false);
+    private boolean started = false;
 
     public CustomizationPanel(TileGrid tileGrid) {
         this.tileGrid = tileGrid;
@@ -21,13 +26,27 @@ public class CustomizationPanel extends HBox {
     private void setBehavior() {
         this.setAlignment(Pos.CENTER);
 
-        start.autosize();
+        start.setDisable(false);
         start.setOnMouseClicked(e -> {
             start.setDisable(true);
-            PhaseController phaseController = new PhaseController(tileGrid.board);
-            phaseController.start();
+            stop.setDisable(false);
+
+            if (!started) {
+                PhaseController phaseController = new PhaseController(tileGrid.board, paused);
+                phaseController.start();
+            }
+
+            started = true;
+            paused.set(false);
         });
 
-        getChildren().addAll(start);
+        stop.setDisable(true);
+        stop.setOnMouseClicked(e -> {
+            paused.set(true);
+            start.setDisable(false);
+            stop.setDisable(true);
+        });
+
+        getChildren().addAll(start, stop);
     }
 }
