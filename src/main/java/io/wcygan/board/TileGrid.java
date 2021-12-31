@@ -1,5 +1,6 @@
 package io.wcygan.board;
 
+import io.wcygan.application.Constants;
 import javafx.scene.layout.GridPane;
 
 public class TileGrid extends GridPane {

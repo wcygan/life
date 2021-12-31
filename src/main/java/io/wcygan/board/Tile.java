@@ -1,5 +1,6 @@
 package io.wcygan.board;
 
+import io.wcygan.application.Constants;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Background;

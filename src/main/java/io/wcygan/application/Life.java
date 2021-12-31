@@ -1,7 +1,6 @@
 package io.wcygan.application;
 
 import io.wcygan.board.Board;
-import io.wcygan.board.Constants;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;

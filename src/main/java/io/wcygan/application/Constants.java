@@ -1,4 +1,4 @@
-package io.wcygan.board;
+package io.wcygan.application;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 

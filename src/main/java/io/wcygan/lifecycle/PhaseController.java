@@ -1,6 +1,6 @@
 package io.wcygan.lifecycle;
 
-import io.wcygan.board.Constants;
+import io.wcygan.application.Constants;
 import io.wcygan.board.Tile;
 
 import java.util.concurrent.atomic.AtomicBoolean;
