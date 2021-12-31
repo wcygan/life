@@ -12,6 +12,8 @@ public class CustomizationPanel extends HBox {
     private final TileGrid tileGrid;
     private final Button start = new Button("Start");
     private final Button stop = new Button("Stop");
+    private final Button cursorToggle = new Button("Toggle Cursor Draw!");
+    private final Button clear = new Button("Erase Grid");
     AtomicBoolean paused = new AtomicBoolean(false);
     private boolean started = false;
 
@@ -47,6 +49,23 @@ public class CustomizationPanel extends HBox {
             stop.setDisable(true);
         });
 
-        getChildren().addAll(start, stop);
+        cursorToggle.setOnMouseClicked(e -> {
+            Constants.SHOULD_FOLLOW_CURSOR.set(!Constants.SHOULD_FOLLOW_CURSOR.get());
+            cursorToggle.setText(Constants.SHOULD_FOLLOW_CURSOR.get() ? "Disable Cursor Draw" : "Toggle Cursor Draw!");
+        });
+
+        clear.setOnMouseClicked(e -> {
+            paused.set(true);
+            start.setDisable(false);
+            stop.setDisable(true);
+
+            for (Tile[] row : tileGrid.board) {
+                for (Tile tile : row) {
+                    tile.reset();
+                }
+            }
+        });
+
+        getChildren().addAll(start, stop, cursorToggle, clear);
     }
 }

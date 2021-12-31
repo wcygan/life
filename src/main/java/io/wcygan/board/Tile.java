@@ -26,6 +26,18 @@ public class Tile extends StackPane {
         setBehaviors();
     }
 
+    private void setBehaviors() {
+        setBorderColor(Color.BLACK);
+        setAlignment(Pos.CENTER);
+        getChildren().addAll(border);
+        setOnMouseClicked(e -> userClicked());
+        setOnMouseEntered(e -> {
+            if (Constants.SHOULD_FOLLOW_CURSOR.get()) {
+                userClicked();
+            }
+        });
+    }
+
     public void checkNeighbors(Tile[][] board) {
         int aliveNeighbors = numNeighborsAlive(board);
 
@@ -68,13 +80,6 @@ public class Tile extends StackPane {
         adjustBackground(alive ? ALIVE_COLOR : DEAD_COLOR);
     }
 
-    private void setBehaviors() {
-        setBorderColor(Color.BLACK);
-        setAlignment(Pos.CENTER);
-        getChildren().addAll(border);
-        setOnMouseClicked(e -> userClicked());
-    }
-
     public void setBorderColor(Color color) {
         this.border.setStroke(color);
     }
@@ -88,4 +93,8 @@ public class Tile extends StackPane {
         adjustBackground(alive ? ALIVE_COLOR : DEAD_COLOR);
     }
 
+    public void reset() {
+        alive = false;
+        adjustBackground(DEAD_COLOR);
+    }
 }

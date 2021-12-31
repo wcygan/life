@@ -1,6 +1,9 @@
 package io.wcygan.board;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class Constants {
+    public static final AtomicBoolean SHOULD_FOLLOW_CURSOR = new AtomicBoolean(false);
     public static final Integer BOARD_SIDE_LENGTH = 2 << 9;
     public static final Integer TILES_PER_SIDE = 2 << 5;
     public static final Integer TILE_LENGTH = BOARD_SIDE_LENGTH / TILES_PER_SIDE;
